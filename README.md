@@ -25,4 +25,4 @@ If you have any questions, please contact Takashi Yoshidome at takashi.yoshidome
 * Add hydrogens to the protein in advance.
 * Run the Jupyter Lab cells of "prediction.ipynb" in order.
 * If you want to compute ∆G_<sub>W,replace</sub>, the following computation is conducted:
-  * Water molecules are placed using [gr Predictor](https://github.com/YoshidomeGroup-Hydration/gr-predictor) and [Placevent](https://github.com/dansind/Placevent/tree/master) programs. Other programs for the placement of water molecules can also be exploited, while we do not check whether the same results are obtained.
+  * Water molecules are placed on to the protein surface using [gr Predictor](https://github.com/YoshidomeGroup-Hydration/gr-predictor) and [Placevent](https://github.com/dansind/Placevent/tree/master) programs. Other programs for the placement of water molecules can also be exploited, while we do not check whether the same results are obtained.

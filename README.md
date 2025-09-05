@@ -26,4 +26,4 @@ If you have any questions, please contact Takashi Yoshidome at takashi.yoshidome
 * Run the Jupyter Lab cells of "prediction.ipynb" in order.
 * If you want to compute ∆G<sub>W,replace</sub>, the following computation is conducted:
   1. Water molecules are placed on to the protein surface using [gr Predictor](https://github.com/YoshidomeGroup-Hydration/gr-predictor) and [Placevent](https://github.com/dansind/Placevent/tree/master) programs. Other programs for the placement of water molecules can also be exploited, while we do not check whether the same results are obtained.
-  2. Prepare PDB files each of which consists of a protein and one water molecule. Note that "TER" label is required between the protein and a water molecule. See sample.pdb for the details.
+  2. Prepare PDB files each of which consists of a protein and one water molecule. Note that "TER" must be required between the protein and a water molecule. See sample.pdb as an example.

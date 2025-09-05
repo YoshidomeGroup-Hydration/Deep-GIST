@@ -28,5 +28,5 @@ If you have any questions, please contact Takashi Yoshidome at takashi.yoshidome
   1. Water molecules are placed on to the protein surface using [gr Predictor](https://github.com/YoshidomeGroup-Hydration/gr-predictor) and [Placevent](https://github.com/dansind/Placevent/tree/master) programs. Other programs for the placement of water molecules can also be exploited, while we do not check whether the same results are obtained.
   2. Prepare PDB files each of which consists of a protein and one water molecule. Note that "TER" must be required between the protein and a water molecule. See sample.pdb as an example.
   3. Prepare "list.txt" in which the PDB names are listed.
-  4. Revise **.
-  5. Run **.py
+  4. Revise the lines of "protein = ", "path_dx_pred = ", "listfile = ", and "path_pdb = " in comput_SumGISTMap.py.
+  5. Run comput_SumGISTMap.py.

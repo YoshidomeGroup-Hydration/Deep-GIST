@@ -23,3 +23,4 @@ If you have any questions, please contact Takashi Yoshidome at takashi.yoshidome
 
 ## Usage
 * Add hydrogens to the protein in advance.
+* Run the Jupyter Lab cells of "prediction.ipynb" in order.

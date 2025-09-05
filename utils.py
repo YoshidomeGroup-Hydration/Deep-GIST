@@ -206,15 +206,18 @@ class BaseBox:
         self.nvoxel_grid = np.array([int(n_grid[i])for i in range(3)])
         self.init_coordinate = np.array([float(origen[i])for i in range(3)])
 
+
 class Atoms(BaseBox):
-    def __init__(self, init_coordinate=(0.,0.,0.), length_cutoff=5., length_voxel=0.5):
+    def __init__(self, init_coordinate=(0.,0.,0.), length_cutoff=8., length_voxel=0.5):
+#    def __init__(self, init_coordinate=(0.,0.,0.), length_cutoff=5., length_voxel=0.5):
         """
         init_coordinate(float): DXファイルの基準座標
-        length_cutoff(float): 原子の影響範囲のカットオフ[Å]。原子の影響が計算される nvoxel は length_cutoff/length_voxel
+        length_cutoff(float): 原子の影響範囲のカットオフ[Å]。原子の影響が計算される nvoxel は length_cutoff/length_voxel
         """
         
         super().__init__(value="atoms")
         DELTA_INDEX = 1
+        self.length_cutoff = length_cutoff #Added by TY
         self.length_voxel = length_voxel
         self.nvoxel_cutoff = int(length_cutoff/self.length_voxel)
         order_atype = "fukushima"
@@ -238,15 +241,15 @@ class Atoms(BaseBox):
         if path_dx:
             self.dxinfo()
         else:
-            xmin = self.atoms_xyz.min(axis=1)
-            xmax = self.atoms_xyz.max(axis=1)
-            ymin = self.atoms_xyz.min(axis=2)
-            ymax = self.atoms_xyz.max(axis=2)
-            zmin = self.atoms_xyz.min(axis=3)
-            zmax = self.atoms_xyz.max(axis=3)
+            #Revised by TY
+            mins = self.atoms_xyz.min(axis=0)  # [xmin, ymin, zmin]            
+            maxs = self.atoms_xyz.max(axis=0)  # [xmax, ymax, zmax]                      
+            xmin, ymin, zmin = mins[0], mins[1], mins[2]
+            xmax, ymax, zmax = maxs[0], maxs[1], maxs[2]
             
-            self.nvoxel_grid = np.array([int(xmax-xmin)*2+nvoxel_cutoff*2, int(ymax-ymin)*2+nvoxel_cutoff*2,int(zmax-zmin)*2+nvoxel_cutoff*2])
-            self.init_coordinate = np.array([0.,0.,0.])
+            self.nvoxel_grid = np.array([int(xmax-xmin)*2+self.nvoxel_cutoff*2, int(ymax-ymin)*2+self.nvoxel_cutoff*2,int(zmax-zmin)*2+self.nvoxel_cutoff*2])
+            self.init_coordinate = np.array([xmin - self.length_cutoff, ymin - self.length_cutoff, zmin - self.length_cutoff])
+#            self.init_coordinate = np.array([0.,0.,0.])
         
             
         atomic_num2index={index: i for i, index in enumerate(self.radiuses.keys())}
@@ -278,22 +281,6 @@ class Atoms(BaseBox):
                                                     self.nvoxel_cutoff * 2 + 1, 
                                                     self.nvoxel_cutoff * 2 + 1)
             #print(atom_grid, atom_grid[0] + self.nvoxel_cutoff, atom_grid[1] + self.nvoxel_cutoff, atom_grid[2] + self.nvoxel_cutoff)
-            """
-            if atom_grid[0]<0:
-                xx = atom_grid[0]
-            if atom_grid[1]<0:
-                yy = atom_grid[1]
-            if atom_grid[2]<0:
-                zz = atom_grid[2]
-
-            box_pad[
-                atomic_num2index[atom_atomic_num],
-                atom_grid[0]: atom_grid[0] + self.nvoxel_cutoff * 2 + 1,
-                atom_grid[1]: atom_grid[1] + self.nvoxel_cutoff * 2 + 1,
-                atom_grid[2]: atom_grid[2] + self.nvoxel_cutoff * 2 + 1
-                    ] += 1 - np.exp(-((self.radiuses[atom_atomic_num] / distances) ** factor))
-            #print(distances.max(), voxel_pad.max())
-            """
 
             box_pad[
                 atomic_num2index[atom_atomic_num],

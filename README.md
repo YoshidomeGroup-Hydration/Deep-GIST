@@ -1,7 +1,7 @@
 # Deep GIST
 
 "Deep GIST" is a deep-learning model for rapidly estimating the distribution of hydration free energy around a protein. It's trained on data from grid inhomogeneous solvation theory (GIST). Computation is completed within a few minutes using CPUs and approximately one minute with a single GPU.
-Model weights (415 MB) will be available at [Zenodo](https://zenodo.org/record/XXXXXX) after the acceptance of the manuscript.
+Model weights (415 MB) is available at [Zenodo](https://zenodo.org/record/XXXXXX).
 
 ## Requirement
 Python 3.7~, tensorflow  

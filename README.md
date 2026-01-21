@@ -15,7 +15,7 @@ If you use “Deep GIST”, please cite:
 ```
 Deep GIST: A Deep-Learning Model for Predicting the Distribution of Hydration Thermodynamics around Proteins
 Yusaku Fukushima and Takashi Yoshidome
-Submitted (2025).
+Journal of Chemical Information and Modeling, accepted for publication (2026).
 ```
 ## Contact
 If you have any questions, please contact Takashi Yoshidome at takashi.yoshidome.b1@tohoku.ac.jp.

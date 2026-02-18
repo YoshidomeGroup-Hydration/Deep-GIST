@@ -1,0 +1,1 @@
+{"input_dim": [48, 48, 48, 5], "n_filters": 32, "n_depth": 5, "kernel_size": 5, "norm": "batch", "dropout_rate": 0, "downtype": "average", "uptype": "simple", "SE": false, "residual": false, "activation": "ReLU", "maal": 0.00425}
